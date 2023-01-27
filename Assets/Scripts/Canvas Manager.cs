@@ -23,14 +23,12 @@ public class CanvasManager : MonoBehaviour
     public Button pauseButton;
     public Button resumeGame;
     public Button surrenderButton;
+    public Button rematchButton;
 
     [Header("Sliders")]
     public Slider mainVolSlider;
     public Slider musicVolSlider;
     public Slider SFXVolSlider;
-
-    [Header("Input")]
-    public InputField playerNameInput;
 
     [Header("Dropdown")]
     public Dropdown textSizeDropdown;
@@ -49,6 +47,25 @@ public class CanvasManager : MonoBehaviour
     public GameObject promptMenu;
     public GameObject cardDetailsMenu;
     public GameObject pauseMenu;
+    public GameObject phaseSelectMenu;
+
+    [Header("Text")]
+    public Text quitPromptText;
+    public Text toMenuPromptText;
+    public Text startGameSetupText;
+    public Text finishSetupText;
+    public Text passP1PromptText;
+    public Text passP2PromptText;
+    public Text leaderPromptText;
+    public Text deckPromptText;
+    public Text startDuelText;
+    public Text playCardText;
+    public Text resumeGameText;
+    public Text battlePhaseText;
+    public Text attackText;
+    public Text endTurnText;
+    public Text surrenderText;
+    public Text rematchText;
 
     void Start()
     {
@@ -64,7 +81,7 @@ public class CanvasManager : MonoBehaviour
 
         if (quitButton)
         {
-            quitButton.onClick.AddListener(() => QuitGame());
+            quitButton.onClick.AddListener(() => QuitGamePrompt());
         }
 
         if (archivesButton)
@@ -86,11 +103,18 @@ public class CanvasManager : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().name == "Main Menu")
             {
-                backButton.onClick.AddListener(() => ShowMainMenu());
+                backButton.onClick.AddListener(() => ShowPrompt());
             }
             else if (SceneManager.GetActiveScene().name == "Arena")
             {
-                backButton.onClick.AddListener(() => OffCardDetails());
+                if (settingsMenu.activeInHierarchy)
+                {
+                    backButton.onClick.AddListener(() => ShowPauseMenu());
+                }
+                else
+                {
+                    backButton.onClick.AddListener(() => OffCardDetails());
+                }
             }
         }
 
@@ -131,7 +155,7 @@ public class CanvasManager : MonoBehaviour
 
         if (resumeGame)
         {
-            resumeGame.onClick.AddListener(() => ResumeGame());
+            resumeGame.onClick.AddListener(() => ShowPrompt());
         }
 
         if (surrenderButton)
@@ -139,44 +163,44 @@ public class CanvasManager : MonoBehaviour
             surrenderButton.onClick.AddListener(() => SurrenderDuel());
         }
 
+        if (rematchButton)
+        {
+            rematchButton.onClick.AddListener(() => Rematch());
+        }
+
         if (mainVolSlider)
         {
-
+            //main volume control
         }
 
         if (musicVolSlider)
         {
-
+            //music volume control
         }
 
         if (SFXVolSlider)
         {
-
-        }
-
-        if (playerNameInput)
-        {
-
+            //SFX volume control
         }
 
         if (textSizeDropdown)
         {
-
+            //Text size dropdown control
         }
 
         if (deckResourcesDropdown)
         {
-
+            //Deck resources dropdown control
         }
 
         if (HPResourcesDropdown)
         {
-
+            //HP resources dropdown control
         }
 
         if (roundResourcesDropdown)
         {
-
+            //Round resources dropdown control
         }
     }
 
@@ -187,7 +211,14 @@ public class CanvasManager : MonoBehaviour
 
     void StartGame()
     {
-        
+        GameManager.instance.startGame = true;
+        ShowPrompt();
+    }
+
+    void QuitGamePrompt()
+    {
+        GameManager.instance.quitGame = true;
+        ShowPrompt();
     }
 
     void QuitGame()
@@ -213,12 +244,6 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
-    void ShowMainMenu()
-    {
-        settingsMenu.SetActive(false);
-        mainMenu.SetActive(true);
-    }
-
     void ShowPauseMenu()
     {
         settingsMenu.SetActive(false);
@@ -228,17 +253,12 @@ public class CanvasManager : MonoBehaviour
     void ResumeGame()
     {
         pauseMenu.SetActive(false);
-        Time.timeScale = 1;
-    }
-
-    void LoadMenu()
-    {
-        SceneManager.LoadScene("Title");
     }
 
     void ShowArchivesMenu()
     {
-
+        mainMenu.SetActive(false);
+        archivesMenu.SetActive(true);
     }
 
     void LoadCredits()
@@ -248,51 +268,319 @@ public class CanvasManager : MonoBehaviour
 
     void MuteVolume()
     {
-
-    }
-
-    void ConfirmYes()
-    {
-
-    }
-
-    void ConfirmNo()
-    {
-
-    }
-
-    void ConfirmPass()
-    {
-
+        //Mute volume
     }
 
     void PhaseSelect()
     {
-
+        phaseSelectMenu.SetActive(true);
     }
 
     void GoToBattlePhase()
     {
-
+        GameManager.instance.battlePhase = true;
+        ShowPrompt();
     }
 
     void EndTurn()
     {
+        if (GameManager.instance.player1Turn)
+        {
+            GameManager.instance.player1Turn = false;
+        }
+        else
+        {
+            GameManager.instance.player1Turn = true;
+        }
 
+        ShowPrompt();
     }
 
     void PauseGame()
     {
-
+        pauseMenu.SetActive(true);
     }
 
     void SurrenderDuel()
     {
-
+        GameManager.instance.surrender = true;
+        ShowPrompt();
     }
 
     void OffCardDetails()
     {
+        cardDetailsMenu.SetActive(false);
+    }
 
+    void Rematch()
+    {
+        GameManager.instance.rematch = true;
+        ShowPrompt();
+    }
+
+    void PassPhone()
+    {
+        promptMenu.SetActive(true);
+
+        if (GameManager.instance.player1Turn)
+        {
+            passP2PromptText.gameObject.SetActive(true);
+            GameManager.instance.player1Turn = false;
+        }
+        else
+        {
+            passP1PromptText.gameObject.SetActive(true);
+            GameManager.instance.player1Turn = true;
+        }
+    }
+
+    void ShowPrompt()
+    {
+        promptMenu.SetActive(true);
+
+        if (mainMenu.activeInHierarchy && !GameManager.instance.startGame)
+        {
+            quitPromptText.gameObject.SetActive(true);
+        }
+
+        if (mainMenu.activeInHierarchy && GameManager.instance.startGame)
+        {
+            startGameSetupText.gameObject.SetActive(true);
+        }
+
+        if (settingsMenu.activeInHierarchy || archivesMenu.activeInHierarchy)
+        {
+            toMenuPromptText.gameObject.SetActive(true);
+        }
+
+        if (duelSetupMenu.activeInHierarchy)
+        {
+            finishSetupText.gameObject.SetActive(true);
+        }
+
+        if (leaderMenu.activeInHierarchy)
+        {
+            leaderPromptText.gameObject.SetActive(true);
+        }
+
+        if (deckBuilderMenu.activeInHierarchy)
+        {
+            deckPromptText.gameObject.SetActive(true);
+        }
+
+        if (coinTossMenu)
+        {
+            startDuelText.gameObject.SetActive(true);
+        }
+
+        if (cardDetailsMenu.activeInHierarchy)
+        {
+            playCardText.gameObject.SetActive(true);
+        }
+
+        if (pauseMenu.activeInHierarchy)
+        {
+            resumeGameText.gameObject.SetActive(true);
+        }
+
+        if (GameManager.instance.rematch)
+        {
+            rematchText.gameObject.SetActive(true);
+        }
+
+        if (GameManager.instance.surrender)
+        {
+            surrenderText.gameObject.SetActive(true);
+        }
+
+        if (phaseSelectMenu.activeInHierarchy)
+        {
+            if (GameManager.instance.battlePhase && !GameManager.instance.endTurn)
+            {
+                battlePhaseText.gameObject.SetActive(true);
+            }
+            else if (GameManager.instance.endTurn)
+            {
+                endTurnText.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    void ConfirmYes()
+    {
+        promptMenu.SetActive(false);
+
+        quitPromptText.gameObject.SetActive(false);
+        toMenuPromptText.gameObject.SetActive(false);
+        passP1PromptText.gameObject.SetActive(false);
+        passP2PromptText.gameObject.SetActive(false);
+        startGameSetupText.gameObject.SetActive(false);
+        leaderPromptText.gameObject.SetActive(false);
+        deckPromptText.gameObject.SetActive(false);
+        startDuelText.gameObject.SetActive(false);
+        playCardText.gameObject.SetActive(false);
+        battlePhaseText.gameObject.SetActive(false);
+        attackText.gameObject.SetActive(false);
+        endTurnText.gameObject.SetActive(false);
+        surrenderText.gameObject.SetActive(false);
+        rematchText.gameObject.SetActive(false);
+
+        if (mainMenu.activeInHierarchy && GameManager.instance.quitGame)
+        {
+            QuitGame();
+        }
+
+        if (mainMenu.activeInHierarchy && GameManager.instance.startGame)
+        {
+            mainMenu.SetActive(false);
+            duelSetupMenu.SetActive(true);
+        }
+
+        if (settingsMenu.activeInHierarchy && SceneManager.GetSceneByName("Main Menu").isLoaded)
+        {
+            settingsMenu.SetActive(false);
+            mainMenu.SetActive(true);
+        }
+
+        if (archivesMenu.activeInHierarchy)
+        {
+            archivesMenu.SetActive(false);
+            mainMenu.SetActive(true);
+        }
+
+        if (duelSetupMenu)
+        {
+            SceneManager.LoadScene("Game Select");
+        }
+
+        if (leaderMenu.activeInHierarchy)
+        {
+            if (GameManager.instance.player1Turn)
+            {
+                PassPhone();
+            }
+            else
+            {
+                leaderMenu.SetActive(false);
+                deckBuilderMenu.SetActive(true);
+            }
+        }
+
+        if (deckBuilderMenu.activeInHierarchy)
+        {
+            if (GameManager.instance.player1Turn)
+            {
+                PassPhone();
+            }
+            else
+            {
+                deckBuilderMenu.SetActive(false);
+                coinTossMenu.SetActive(true);
+            }
+        }
+
+        if (coinTossMenu.activeInHierarchy)
+        {
+            SceneManager.LoadScene("Arena");
+        }
+
+        if (cardDetailsMenu.activeInHierarchy)
+        {
+            //Play Card
+        }
+
+        if (pauseMenu.activeInHierarchy && !GameManager.instance.surrender)
+        {
+            ResumeGame();
+        }
+
+        if (GameManager.instance.rematch)
+        {
+            SceneManager.LoadScene("Game Select");
+            leaderMenu.SetActive(false);
+            coinTossMenu.SetActive(true);
+            GameManager.instance.rematch = false;
+        }
+
+        if (GameManager.instance.surrender)
+        {
+            SceneManager.LoadScene("Game Over");
+            GameManager.instance.surrender = false;
+        }
+
+        if (phaseSelectMenu.activeInHierarchy)
+        {
+            if (GameManager.instance.battlePhase && !GameManager.instance.endTurn)
+            {
+                //Begin Battle Phase
+            }
+            else if (GameManager.instance.endTurn)
+            {
+                PassPhone();
+                GameManager.instance.endTurn = false;
+                GameManager.instance.battlePhase = false;
+            }
+        }
+    }
+
+    void ConfirmNo()
+    {
+        promptMenu.SetActive(false);
+
+        if (phaseSelectMenu.activeInHierarchy)
+        {
+            if (GameManager.instance.battlePhase && !GameManager.instance.endTurn)
+            {
+                GameManager.instance.battlePhase = false;
+            }
+            else if (GameManager.instance.endTurn)
+            {
+                GameManager.instance.endTurn = false;
+            }
+        }
+
+        quitPromptText.gameObject.SetActive(false);
+        toMenuPromptText.gameObject.SetActive(false);
+        passP1PromptText.gameObject.SetActive(false);
+        passP2PromptText.gameObject.SetActive(false);
+        startGameSetupText.gameObject.SetActive(false);
+        leaderPromptText.gameObject.SetActive(false);
+        deckPromptText.gameObject.SetActive(false);
+        startDuelText.gameObject.SetActive(false);
+        playCardText.gameObject.SetActive(false);
+        battlePhaseText.gameObject.SetActive(false);
+        attackText.gameObject.SetActive(false);
+        endTurnText.gameObject.SetActive(false);
+        surrenderText.gameObject.SetActive(false);
+        rematchText.gameObject.SetActive(false);
+    }
+
+    void ConfirmPass()
+    {
+        promptMenu.SetActive(false);
+
+        quitPromptText.gameObject.SetActive(false);
+        toMenuPromptText.gameObject.SetActive(false);
+        passP1PromptText.gameObject.SetActive(false);
+        passP2PromptText.gameObject.SetActive(false);
+        startGameSetupText.gameObject.SetActive(false);
+        leaderPromptText.gameObject.SetActive(false);
+        deckPromptText.gameObject.SetActive(false);
+        startDuelText.gameObject.SetActive(false);
+        playCardText.gameObject.SetActive(false);
+        battlePhaseText.gameObject.SetActive(false);
+        attackText.gameObject.SetActive(false);
+        endTurnText.gameObject.SetActive(false);
+        surrenderText.gameObject.SetActive(false);
+        rematchText.gameObject.SetActive(false);
+
+        if (GameManager.instance.player1Turn)
+        {
+            //Swap to Player1
+        }
+        else
+        {
+            //Swap to Player2
+        }
     }
 }

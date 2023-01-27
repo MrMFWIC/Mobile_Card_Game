@@ -14,6 +14,14 @@ public class GameManager : MonoBehaviour
         set { _instance = value; }
     }
 
+    public bool startGame = false;
+    public bool quitGame = false;
+    public bool player1Turn = true;
+    public bool endTurn = false;
+    public bool surrender = false;
+    public bool rematch = false;
+    public bool battlePhase = false;
+
     void Awake()
     {
         if (instance)
