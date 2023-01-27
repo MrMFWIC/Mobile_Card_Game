@@ -67,6 +67,8 @@ public class CanvasManager : MonoBehaviour
     public Text surrenderText;
     public Text rematchText;
 
+    // Checks if player inputs are present.
+    // Adds listeners and functionality to player inputs
     void Start()
     {
         if (startButton)
@@ -318,6 +320,7 @@ public class CanvasManager : MonoBehaviour
         ShowPrompt();
     }
 
+    //Sets pass-and-play prompt and sets player turn
     void PassPhone()
     {
         promptMenu.SetActive(true);
@@ -334,6 +337,7 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
+    //Sets text displayed on prompt
     void ShowPrompt()
     {
         promptMenu.SetActive(true);
@@ -406,6 +410,7 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
+    //Executes functions and game logic after confirmation of decisions
     void ConfirmYes()
     {
         promptMenu.SetActive(false);
@@ -504,7 +509,7 @@ public class CanvasManager : MonoBehaviour
 
         if (GameManager.instance.surrender)
         {
-            SceneManager.LoadScene("Game Over");
+            GameManager.instance.GameOver();
             GameManager.instance.surrender = false;
         }
 
@@ -523,6 +528,7 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
+    //Returns players to previous screen upon declination of decisions
     void ConfirmNo()
     {
         promptMenu.SetActive(false);
@@ -555,6 +561,7 @@ public class CanvasManager : MonoBehaviour
         rematchText.gameObject.SetActive(false);
     }
 
+    //Swap inputs and game states based on player turn
     void ConfirmPass()
     {
         promptMenu.SetActive(false);

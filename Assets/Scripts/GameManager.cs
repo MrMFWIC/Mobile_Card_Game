@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
         set { _instance = value; }
     }
 
+    [Header("Game States")]
     public bool startGame = false;
     public bool quitGame = false;
     public bool player1Turn = true;
@@ -21,6 +22,12 @@ public class GameManager : MonoBehaviour
     public bool surrender = false;
     public bool rematch = false;
     public bool battlePhase = false;
+
+    [Header("Duel Info")]
+    public int player1HP;
+    public int player2HP;
+    public int turnResources;
+    public int deckResources;
 
     void Awake()
     {
@@ -37,6 +44,6 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        SceneManager.LoadScene("GameOver");
+        SceneManager.LoadScene("Game Over");
     }
 }
