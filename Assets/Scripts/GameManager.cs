@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
         set { _instance = value; }
     }
 
+    //Game State variables
     [Header("Game States")]
     public bool startGame = false;
     public bool quitGame = false;
