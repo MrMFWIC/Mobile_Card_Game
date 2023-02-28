@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     //Game State variables
     [Header("Game States")]
     public bool startGame = false;
+    public bool beginDuel = false;
     public bool quitGame = false;
     public bool player1Turn = true;
     public bool endTurn = false;

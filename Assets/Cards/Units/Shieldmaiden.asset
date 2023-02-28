@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f92f86743532c4449b3748ea0bc29d2, type: 3}
+  m_Name: Shieldmaiden
+  m_EditorClassIdentifier: 
+  artwork: {fileID: 21300000, guid: a1699583191ec7d43b8cbf18b9d459d8, type: 3}
+  cardFrame: {fileID: 21300000, guid: 5cb0084012b9e9d4593ce8eeeb558e3e, type: 3}
+  cardName: Shieldmaiden
+  description: A ferocious and merciless warrior, destroying all those in her path 
+    who would dare underestimate a woman.
+  cost: 3
+  ATK: 5
+  currentCardType: 1

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f92f86743532c4449b3748ea0bc29d2, type: 3}
+  m_Name: Odin
+  m_EditorClassIdentifier: 
+  artwork: {fileID: 21300000, guid: 659ca5cc24871d746be6dd012b171055, type: 3}
+  cardFrame: {fileID: 21300000, guid: 95390be7a757647468228eedcff2f306, type: 3}
+  cardName: Odin
+  description: "\uF0A7The leader of the Aesir, all-father of man, and the god of
+    wisdom and war. Powerful and mysterious, all who know his name both fear and
+    respect him."
+  cost: 8
+  ATK: 9

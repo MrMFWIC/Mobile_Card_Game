@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f92f86743532c4449b3748ea0bc29d2, type: 3}
+  m_Name: Thor
+  m_EditorClassIdentifier: 
+  artwork: {fileID: 21300000, guid: 2023b7e24b5ed9d41b33385ab5d19c01, type: 3}
+  cardFrame: {fileID: 21300000, guid: 95390be7a757647468228eedcff2f306, type: 3}
+  cardName: Thor
+  description: "\uF0A7Mankind\u2019s protector, the god of thunder, and the guardian
+    of Asgard. With his unmatched strength and his mystical hammer Mjolnir, few have
+    battled Thor and lived to tell the tale."
+  cost: 8
+  ATK: 9
