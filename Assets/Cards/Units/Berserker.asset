@@ -20,3 +20,10 @@ MonoBehaviour:
   cost: 4
   ATK: 6
   currentCardType: 1
+  loreText: A Viking warrior feared by all due to a single characteristic. The berserker
+    fights in a blood rage, a trance-like fury, making them completely unstoppable
+    in battle. With little to no reaction to pain or major injuries, a berserker
+    would keep fighting with a ferocity unmatched on the battlefield through wounds
+    that would have dropped a normal man.
+  bonusEffectText: None
+  affiliationtext: Human

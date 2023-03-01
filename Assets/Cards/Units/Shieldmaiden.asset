@@ -20,3 +20,10 @@ MonoBehaviour:
   cost: 3
   ATK: 5
   currentCardType: 1
+  loreText: With a temper and ferocity more than equal to the most brave of men,
+    shieldmaidens were Viking women who threw away the traditional ideals and took
+    up arms to fight alongside the warriors. Fighting with skill equal or exceeding
+    their male counterparts, any man foolish enough to underestimate the abilities
+    of these fierce warriors would not even be given the chance to regret it.
+  bonusEffectText: None
+  affiliationtext: Human

@@ -20,3 +20,13 @@ MonoBehaviour:
     for, other than his own."
   cost: 8
   ATK: 9
+  currentCardType: 0
+  loreText: Loki is primarily referred to as the trickster god, holding a place among
+    the Aesir while not technically being a god at all, instead being from the race
+    of the Jotunn. Loki is well know for his cunning and wit, and he also possesses
+    the ability to change his shape and sex at will. His nature is ever-changing
+    and his intentions are never clear, as he oftentimes uses his cunning to help
+    the gods with his clever plans and get them out of trouble, but usually it is
+    he who put them in trouble in the first place.
+  bonusEffectText: Spell cards cost 1 less to activate.
+  affiliationtext: N/A

@@ -20,3 +20,10 @@ MonoBehaviour:
   cost: 6
   ATK: 7
   currentCardType: 1
+  loreText: The leader of a Viking clan, Chieftains were both feared and respected
+    in Viking society. The strongest and most famed warrior in the clan, a chieftain
+    would lead his war party into battle. Countless victories and bloody battles
+    could not have been won without the frontline leadership of an experienced and
+    deadly chieftain.
+  bonusEffectText: None
+  affiliationtext: Human

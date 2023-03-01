@@ -20,3 +20,9 @@ MonoBehaviour:
   cost: 5
   ATK: 6
   currentCardType: 1
+  loreText: The Valkyrie are a legion of warrior maidens who served the All Father.
+    Riding across the battlefields of mankind, they decide the fates of those who
+    perish, escorting the most worthy to the halls of Valhalla. The Valkyries most
+    commonly rode horseback across heavens, armed with a spear.
+  bonusEffectText: None
+  affiliationtext: Mystic

@@ -20,3 +20,11 @@ MonoBehaviour:
   cost: 7
   ATK: 8
   currentCardType: 1
+  loreText: "Also known as the Midgard/World Serpent, Jormungandr is the son of Loki
+    and brother of the great wolf Fenrir. His body is so large that it wraps around
+    the whole earth underneath the oceans, and he is often said to hold his tail
+    in his mouth. His movements cause the earthquakes and great waves that plague
+    mankind, and he is fated to slay and be slain by Thor, the strongest of the gods,
+    at Ragnar\xF6k."
+  bonusEffectText: None
+  affiliationtext: Beast

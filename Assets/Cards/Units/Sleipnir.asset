@@ -20,3 +20,9 @@ MonoBehaviour:
   cost: 4
   ATK: 4
   currentCardType: 1
+  loreText: The son of Loki, Sleipnir is the legendary 8 lagged stallion ridden by
+    Odin himself. Possessing incredible strength and unmatched speed, there is no
+    question that Sleipnir is the most venerable steed throughout all of the Norse
+    worlds.
+  bonusEffectText: None
+  affiliationtext: Beast

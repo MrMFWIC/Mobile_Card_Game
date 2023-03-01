@@ -20,3 +20,10 @@ MonoBehaviour:
   cost: 6
   ATK: 6
   currentCardType: 1
+  loreText: A massive humanoid being of immense power and magical inclination, a
+    jotunn, collectively known as the jotnar, is a giant of extreme size primarily
+    originating from the world of Jotunheim. Jotnar are primarily seen as the enemies
+    of the gods, in a constant battle with the Aesir, of which Thor himself is responsible
+    for fighting.
+  bonusEffectText: None
+  affiliationtext: Dark

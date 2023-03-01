@@ -20,3 +20,12 @@ MonoBehaviour:
     respect him."
   cost: 8
   ATK: 9
+  currentCardType: 0
+  loreText: "Often referred to as the All Father, Odin is the ruler of the Aesir,
+    the Norse gods associated with war. He is the god of battle, death, wisdom, magic,
+    and poetry. Half of all the warriors who die valiantly in battle are brought
+    to Odin\u2019s hall, known as Valhalla. His ravens Huginn and Muninn report back
+    to him the happenings of the world, and with his all-seeing eye and mastery of
+    the runes, he is the epitome of wisdom in the Norse worlds. "
+  bonusEffectText: All Human or Mystic units can be played for 1 less cost.
+  affiliationtext: N/A

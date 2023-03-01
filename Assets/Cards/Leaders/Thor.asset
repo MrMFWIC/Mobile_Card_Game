@@ -20,3 +20,13 @@ MonoBehaviour:
     battled Thor and lived to tell the tale."
   cost: 8
   ATK: 9
+  currentCardType: 0
+  loreText: The stoic defender of the Aesir and mankind alike, Thor is the god of
+    thunder, who wields a hammer named Mjolnir, of which only he can lift. Thor is
+    also the god of lightning, storms, strength, and protection. Often seen as the
+    great protector, his legendary battles against the jotnar are viewed with awe
+    and respect. The courage and physical strength of Thor is virtually unmatched
+    by any being in the 9 worlds.
+  bonusEffectText: Units you control cannot be destroyed by battle with a unit that
+    has the same ATK.
+  affiliationtext: N/A

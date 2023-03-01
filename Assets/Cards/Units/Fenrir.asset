@@ -21,3 +21,10 @@ MonoBehaviour:
   cost: 8
   ATK: 9
   currentCardType: 1
+  loreText: "The son of the trickster god Loki, Fenrir is the great wolf fated to
+    break free of his chains and kill the Odin the All Father on Ragnar\xF6k. Feared
+    by all of the gods due to his unmatched ferocity and ever increasing strength,
+    it took the sacrifices of many, including the hand of the god Tyr, and a chain
+    made of unnatural and impossible elements just to contain him."
+  bonusEffectText: None
+  affiliationtext: Beast

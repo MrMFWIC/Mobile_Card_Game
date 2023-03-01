@@ -20,3 +20,9 @@ MonoBehaviour:
   cost: 2
   ATK: 4
   currentCardType: 1
+  loreText: A draugr is feared by all in the Norse worlds, a being that terrifies
+    the minds of children and adults alike. The reanimated corpse of the deceased,
+    a draugr will haunt the darkness with a unnatural silence, pouncing on any living
+    being unfortunate enough to cross its path.
+  bonusEffectText: None
+  affiliationtext: Dark

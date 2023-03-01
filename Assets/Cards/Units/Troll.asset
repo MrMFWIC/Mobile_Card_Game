@@ -20,3 +20,9 @@ MonoBehaviour:
   cost: 5
   ATK: 7
   currentCardType: 1
+  loreText: Wild and dangerous beings living in the rocks and caves, trolls are often
+    described as strong, dangerous, and inherently evil creatures, sharing many characteristics
+    with the jotnar. Hostile to any who may cross them, a troll can easily overpower
+    any human it decides to prey on.
+  bonusEffectText: None
+  affiliationtext: Dark

@@ -20,3 +20,10 @@ MonoBehaviour:
   cost: 3
   ATK: 3
   currentCardType: 1
+  loreText: "The spiritual leaders of the Vikings, and the only respected mortals
+    who practiced shamanism and seidr, the v\xF6lva where thought to be most in tune
+    with the gods themselves. Speaking with the spirits of the land and the gods,
+    the v\xF6lva would guide the clan through her prophecies. Both a mystic and a
+    healer, v\xF6lva were highly respected in Viking society."
+  bonusEffectText: None
+  affiliationtext: Mystic

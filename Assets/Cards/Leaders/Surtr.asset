@@ -20,3 +20,12 @@ MonoBehaviour:
     his name, he powerful enough to overcome the gods themselves."
   cost: 8
   ATK: 9
+  currentCardType: 0
+  loreText: "Surtr is the king of the fire jotnar, who rules over the world of Muspelheim.
+    As the guardian of his realm, he is often seen standing guard at the border,
+    brandishing a flaming sword. When Ragnar\xF6k, the end of the world, arrives,
+    Surtr is destined to lead the fire jotnar into battle against the gods. He will
+    raze all 9 worlds with his fire, killing almost all living beings in the cosmos,
+    before perishing himself. "
+  bonusEffectText: All Dark or Beast units can be played for 1 less cost.
+  affiliationtext: N/A

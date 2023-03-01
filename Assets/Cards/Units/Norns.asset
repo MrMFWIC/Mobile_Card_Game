@@ -20,3 +20,9 @@ MonoBehaviour:
   cost: 6
   ATK: 4
   currentCardType: 1
+  loreText: The Norns are the 3 goddesses of fate, 3 sisters named Urd, Verdandi,
+    and Skuld. They dwell at the roots of the world tree and are responsible for
+    weaving the tapestry of fate. They control the fates of all living creatures
+    in the nine worlds, and nothing can alter the destinies that they have woven.
+  bonusEffectText: None
+  affiliationtext: Mystic
