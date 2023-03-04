@@ -6,6 +6,7 @@ using UnityEngine;
 public class Card : ScriptableObject
 {
     [Header("Card")]
+    public BoxCollider2D interactBox;
     public Sprite artwork;
     public Sprite cardFrame;
     public string cardName;

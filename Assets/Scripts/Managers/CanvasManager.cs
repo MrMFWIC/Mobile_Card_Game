@@ -56,6 +56,10 @@ public class CanvasManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject phaseSelectMenu;
 
+    [Header("Panels")]
+    public GameObject unitDetailsPanel;
+    public GameObject spellDetailsPanel;
+
     [Header("Text")]
     public Text quitPromptText;
     public Text toMenuPromptText;
@@ -76,6 +80,13 @@ public class CanvasManager : MonoBehaviour
     public Text masterVolText;
     public Text musicVolText;
     public Text SFXVolText;
+    public Text cardNameText;
+    public Text cardTypeText;
+    public Text cardAffiliationText;
+    public Text cardCostText;
+    public Text cardATKText;
+    public Text cardLoreText;
+    public Text cardEffectText;
 
     // Checks if player inputs are present.
     // Adds listeners and functionality to player inputs
@@ -436,7 +447,7 @@ public class CanvasManager : MonoBehaviour
             startDuelText.gameObject.SetActive(true);
         }
 
-        if (cardDetailsMenu.activeInHierarchy)
+        if (cardDetailsMenu.activeInHierarchy && SceneManager.GetSceneByName("Arena").isLoaded)
         {
             playCardText.gameObject.SetActive(true);
         }
