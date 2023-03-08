@@ -407,75 +407,130 @@ public class CanvasManager : MonoBehaviour
     {
         promptMenu.SetActive(true);
 
-        if (mainMenu.activeInHierarchy && !GameManager.instance.startGame)
+        if (mainMenu)
         {
-            quitPromptText.gameObject.SetActive(true);
+            if (mainMenu.activeInHierarchy && !GameManager.instance.startGame)
+            {
+                quitPromptText.gameObject.SetActive(true);
+
+                return;
+            }
+
+            if (mainMenu.activeInHierarchy && GameManager.instance.startGame)
+            {
+                startGameSetupText.gameObject.SetActive(true);
+
+                return;
+            }
         }
 
-        if (mainMenu.activeInHierarchy && GameManager.instance.startGame)
+        if (settingsMenu)
         {
-            startGameSetupText.gameObject.SetActive(true);
+            if (settingsMenu.activeInHierarchy || archivesMenu.activeInHierarchy)
+            {
+                toMenuPromptText.gameObject.SetActive(true);
+
+                return;
+            }
         }
 
-        if (settingsMenu.activeInHierarchy || archivesMenu.activeInHierarchy)
+        if (duelSetupMenu)
         {
-            toMenuPromptText.gameObject.SetActive(true);
+            if (duelSetupMenu.activeInHierarchy && GameManager.instance.beginDuel)
+            {
+                finishSetupText.gameObject.SetActive(true);
+
+                return;
+            }
+
+            if (duelSetupMenu.activeInHierarchy && !GameManager.instance.beginDuel)
+            {
+                toMenuPromptText.gameObject.SetActive(true);
+
+                return;
+            }
         }
 
-        if (duelSetupMenu.activeInHierarchy && GameManager.instance.beginDuel)
+        if (leaderMenu)
         {
-            finishSetupText.gameObject.SetActive(true);
+            if (leaderMenu.activeInHierarchy)
+            {
+                leaderPromptText.gameObject.SetActive(true);
+
+                return;
+            }
         }
 
-        if (duelSetupMenu.activeInHierarchy && !GameManager.instance.beginDuel)
+        if (deckBuilderMenu)
         {
-            toMenuPromptText.gameObject.SetActive(true);
-        }
+            if (deckBuilderMenu.activeInHierarchy)
+            {
+                deckPromptText.gameObject.SetActive(true);
 
-        if (leaderMenu.activeInHierarchy)
-        {
-            leaderPromptText.gameObject.SetActive(true);
-        }
-
-        if (deckBuilderMenu.activeInHierarchy)
-        {
-            deckPromptText.gameObject.SetActive(true);
+                return;
+            }
         }
 
         if (coinTossMenu)
         {
-            startDuelText.gameObject.SetActive(true);
+            if (coinTossMenu.activeInHierarchy)
+            {
+                startDuelText.gameObject.SetActive(true);
+                
+                return;
+            }
         }
 
-        if (cardDetailsMenu.activeInHierarchy && SceneManager.GetSceneByName("Arena").isLoaded)
+        if (cardDetailsMenu)
         {
-            playCardText.gameObject.SetActive(true);
+            if (cardDetailsMenu.activeInHierarchy && SceneManager.GetSceneByName("Arena").isLoaded)
+            {
+                playCardText.gameObject.SetActive(true);
+
+                return;
+            }
         }
 
-        if (pauseMenu.activeInHierarchy)
+        if (pauseMenu)
         {
-            resumeGameText.gameObject.SetActive(true);
+            if (pauseMenu.activeInHierarchy)
+            {
+                resumeGameText.gameObject.SetActive(true);
+
+                return;
+            }
         }
 
         if (GameManager.instance.rematch)
         {
             rematchText.gameObject.SetActive(true);
+
+            return;
         }
 
         if (GameManager.instance.surrender)
         {
             surrenderText.gameObject.SetActive(true);
+
+            return;
         }
 
-        if (phaseSelectMenu.activeInHierarchy)
+        if (phaseSelectMenu)
         {
-            if (GameManager.instance.battlePhase && !GameManager.instance.endTurn)
+            if (phaseSelectMenu.activeInHierarchy)
             {
-                battlePhaseText.gameObject.SetActive(true);
-            }
-            else if (GameManager.instance.endTurn)
-            {
-                endTurnText.gameObject.SetActive(true);
+                if (GameManager.instance.battlePhase && !GameManager.instance.endTurn)
+                {
+                    battlePhaseText.gameObject.SetActive(true);
+
+                    return;
+                }
+                else if (GameManager.instance.endTurn)
+                {
+                    endTurnText.gameObject.SetActive(true);
+
+                    return;
+                }
             }
         }
     }
@@ -500,79 +555,133 @@ public class CanvasManager : MonoBehaviour
         surrenderText.gameObject.SetActive(false);
         rematchText.gameObject.SetActive(false);
 
-        if (mainMenu.activeInHierarchy && GameManager.instance.quitGame)
+        if (mainMenu)
         {
-            QuitGame();
-        }
-
-        if (mainMenu.activeInHierarchy && GameManager.instance.startGame)
-        {
-            mainMenu.SetActive(false);
-            duelSetupMenu.SetActive(true);
-        }
-
-        if (settingsMenu.activeInHierarchy && SceneManager.GetSceneByName("Main Menu").isLoaded)
-        {
-            settingsMenu.SetActive(false);
-            mainMenu.SetActive(true);
-        }
-
-        if (archivesMenu.activeInHierarchy)
-        {
-            archivesMenu.SetActive(false);
-            mainMenu.SetActive(true);
-        }
-
-        if (duelSetupMenu.activeInHierarchy && GameManager.instance.beginDuel)
-        {
-            SceneManager.LoadScene("Game Select");
-        }
-
-        if (duelSetupMenu.activeInHierarchy && !GameManager.instance.beginDuel)
-        {
-            duelSetupMenu.SetActive(false);
-            mainMenu.SetActive(true);
-        }
-
-        if (leaderMenu.activeInHierarchy)
-        {
-            if (GameManager.instance.player1Turn)
+            if (mainMenu.activeInHierarchy && GameManager.instance.quitGame)
             {
-                PassPhone();
+                QuitGame();
+
+                return;
             }
-            else
+
+            if (mainMenu.activeInHierarchy && GameManager.instance.startGame)
             {
-                leaderMenu.SetActive(false);
-                deckBuilderMenu.SetActive(true);
+                Debug.Log("activate duel setup menu accessed");
+                duelSetupMenu.SetActive(true);
+                mainMenu.SetActive(false);
+
+                return;
             }
         }
 
-        if (deckBuilderMenu.activeInHierarchy)
+        if (settingsMenu)
         {
-            if (GameManager.instance.player1Turn)
+            if (settingsMenu.activeInHierarchy && SceneManager.GetSceneByName("Main Menu").isLoaded)
             {
-                PassPhone();
-            }
-            else
-            {
-                deckBuilderMenu.SetActive(false);
-                coinTossMenu.SetActive(true);
+                settingsMenu.SetActive(false);
+                mainMenu.SetActive(true);
+
+                return;
             }
         }
 
-        if (coinTossMenu.activeInHierarchy)
+        if (archivesMenu)
         {
-            SceneManager.LoadScene("Arena");
+            if (archivesMenu.activeInHierarchy)
+            {
+                archivesMenu.SetActive(false);
+                mainMenu.SetActive(true);
+
+                return;
+            }
         }
 
-        if (cardDetailsMenu.activeInHierarchy)
+        if (duelSetupMenu)
         {
-            //Play Card
+            if (duelSetupMenu.activeInHierarchy && GameManager.instance.beginDuel)
+            {
+                SceneManager.LoadScene("Game Select");
+
+                return;
+            }
+
+            if (duelSetupMenu.activeInHierarchy && !GameManager.instance.beginDuel)
+            {
+                duelSetupMenu.SetActive(false);
+                mainMenu.SetActive(true);
+
+                return;
+            }
         }
 
-        if (pauseMenu.activeInHierarchy && !GameManager.instance.surrender)
+        if (leaderMenu)
         {
-            ResumeGame();
+            if (leaderMenu.activeInHierarchy)
+            {
+                if (GameManager.instance.player1Turn)
+                {
+                    PassPhone();
+
+                    return;
+                }
+                else
+                {
+                    leaderMenu.SetActive(false);
+                    deckBuilderMenu.SetActive(true);
+
+                    return;
+                }
+            }
+        }
+
+        if (deckBuilderMenu)
+        {
+            if (deckBuilderMenu.activeInHierarchy)
+            {
+                if (GameManager.instance.player1Turn)
+                {
+                    PassPhone();
+
+                    return;
+                }
+                else
+                {
+                    deckBuilderMenu.SetActive(false);
+                    coinTossMenu.SetActive(true);
+
+                    return;
+                }
+            }
+        }
+
+        if (coinTossMenu)
+        {
+            if (coinTossMenu.activeInHierarchy)
+            {
+                SceneManager.LoadScene("Arena");
+
+                return;
+            }
+        }
+
+        if (cardDetailsMenu)
+        {
+            if (cardDetailsMenu.activeInHierarchy)
+            {
+                //Play Card
+
+                return;
+            }
+        }
+
+        if (pauseMenu)
+        {
+            if (pauseMenu.activeInHierarchy && !GameManager.instance.surrender)
+            {
+                ResumeGame();
+
+                return;
+            }
         }
 
         if (GameManager.instance.rematch)
@@ -581,25 +690,36 @@ public class CanvasManager : MonoBehaviour
             leaderMenu.SetActive(false);
             coinTossMenu.SetActive(true);
             GameManager.instance.rematch = false;
+
+            return;
         }
 
         if (GameManager.instance.surrender)
         {
             GameManager.instance.GameOver();
             GameManager.instance.surrender = false;
+
+            return;
         }
 
-        if (phaseSelectMenu.activeInHierarchy)
+        if (phaseSelectMenu)
         {
-            if (GameManager.instance.battlePhase && !GameManager.instance.endTurn)
+            if (phaseSelectMenu.activeInHierarchy)
             {
-                //Begin Battle Phase
-            }
-            else if (GameManager.instance.endTurn)
-            {
-                PassPhone();
-                GameManager.instance.endTurn = false;
-                GameManager.instance.battlePhase = false;
+                if (GameManager.instance.battlePhase && !GameManager.instance.endTurn)
+                {
+                    //Begin Battle Phase
+
+                    return;
+                }
+                else if (GameManager.instance.endTurn)
+                {
+                    PassPhone();
+                    GameManager.instance.endTurn = false;
+                    GameManager.instance.battlePhase = false;
+
+                    return;
+                }
             }
         }
     }
@@ -609,15 +729,18 @@ public class CanvasManager : MonoBehaviour
     {
         promptMenu.SetActive(false);
 
-        if (phaseSelectMenu.activeInHierarchy)
+        if (phaseSelectMenu)
         {
-            if (GameManager.instance.battlePhase && !GameManager.instance.endTurn)
+            if (phaseSelectMenu.activeInHierarchy)
             {
-                GameManager.instance.battlePhase = false;
-            }
-            else if (GameManager.instance.endTurn)
-            {
-                GameManager.instance.endTurn = false;
+                if (GameManager.instance.battlePhase && !GameManager.instance.endTurn)
+                {
+                    GameManager.instance.battlePhase = false;
+                }
+                else if (GameManager.instance.endTurn)
+                {
+                    GameManager.instance.endTurn = false;
+                }
             }
         }
 
