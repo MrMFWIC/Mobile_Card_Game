@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DropdownManager : MonoBehaviour
+public class ArchivesDropdownManager : MonoBehaviour
 {
     public GameObject leaderCardsDisplay;
     public GameObject unitCardsDisplay;

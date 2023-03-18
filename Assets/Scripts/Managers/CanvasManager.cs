@@ -566,7 +566,6 @@ public class CanvasManager : MonoBehaviour
 
             if (mainMenu.activeInHierarchy && GameManager.instance.startGame)
             {
-                Debug.Log("activate duel setup menu accessed");
                 duelSetupMenu.SetActive(true);
                 mainMenu.SetActive(false);
 
@@ -609,6 +608,8 @@ public class CanvasManager : MonoBehaviour
             {
                 duelSetupMenu.SetActive(false);
                 mainMenu.SetActive(true);
+
+                GameManager.instance.startGame = false;
 
                 return;
             }
@@ -741,6 +742,19 @@ public class CanvasManager : MonoBehaviour
                 {
                     GameManager.instance.endTurn = false;
                 }
+            }
+        }
+
+        if (mainMenu)
+        {
+            if (mainMenu.activeInHierarchy && GameManager.instance.quitGame)
+            {
+                GameManager.instance.quitGame = false;
+            }
+
+            if (mainMenu.activeInHierarchy && GameManager.instance.startGame)
+            {
+                GameManager.instance.startGame = false;
             }
         }
 

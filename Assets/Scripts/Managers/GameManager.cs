@@ -26,9 +26,9 @@ public class GameManager : MonoBehaviour
     public bool battlePhase = false;
 
     [Header("Duel Info")]
-    public int healthPool;
-    public int roundResources;
-    public int deckResources;
+    public int healthPool = 15;
+    public int roundResources = 8;
+    public int deckResources = 100;
 
     void Awake()
     {
