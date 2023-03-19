@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f92f86743532c4449b3748ea0bc29d2, type: 3}
   m_Name: Berserker
   m_EditorClassIdentifier: 
+  interactBox: {fileID: 0}
   artwork: {fileID: 21300000, guid: 23ba99ef735f5804087538790d78e4ea, type: 3}
   cardFrame: {fileID: 21300000, guid: 5cb0084012b9e9d4593ce8eeeb558e3e, type: 3}
   cardName: Berserker
-  description: 'A strong ferocious warrior who fights with an unparalleled and  feared
-    blood rage, unstoppable in his onslaught. '
+  description: 'A strong and ferocious warrior who fights with an unparalleled and 
+    feared blood rage, unstoppable in his onslaught. '
   cost: 4
   ATK: 6
   currentCardType: 1

@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f92f86743532c4449b3748ea0bc29d2, type: 3}
   m_Name: Fenrir
   m_EditorClassIdentifier: 
+  interactBox: {fileID: 0}
   artwork: {fileID: 21300000, guid: 331cd44d4f0fcef4e9eb760fe2b2c8c9, type: 3}
   cardFrame: {fileID: 21300000, guid: 99c6379aecb482042a1429c1f31f448f, type: 3}
   cardName: Fenrir
-  description: "The great wolf of Ragnar\xF6k, feared by all it comes across. It
-    is said  that the wolf\u2019s howl is enough to break the spirit of the strongest 
+  description: "The great wolf of Ragnar\xF6k, feared by all who comes across him.
+    It is said  that the wolf\u2019s howl is enough to break the spirit of the strongest 
     warrior."
   cost: 8
   ATK: 9

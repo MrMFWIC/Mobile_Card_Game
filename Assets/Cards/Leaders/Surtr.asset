@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f92f86743532c4449b3748ea0bc29d2, type: 3}
   m_Name: Surtr
   m_EditorClassIdentifier: 
+  interactBox: {fileID: 0}
   artwork: {fileID: 21300000, guid: 1989b7df9c4eac147a65fb6691e4250b, type: 3}
   cardFrame: {fileID: 21300000, guid: 95390be7a757647468228eedcff2f306, type: 3}
   cardName: Surtr
   description: "\uF0A7Leader of the fire Jotnar and bringer of Ragnar\xF6k, Surtr
     is destined to bring about the end of the world. Inspiring fear in all who utter
-    his name, he powerful enough to overcome the gods themselves."
+    his name, he is powerful enough to overcome the gods themselves."
   cost: 8
   ATK: 9
   currentCardType: 0
