@@ -19,48 +19,52 @@ public class CardDisplay : MonoBehaviour
 
     public Image ATKPlaceholderImage;
 
+    private CanvasManager canvasManager;
+
     void Start()
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(() => ShowCardDetails());
 
         UpdateCard();
+
+        canvasManager = UnityEngine.Object.FindObjectOfType<Canvas>().GetComponent<CanvasManager>();
     }
 
     void ShowCardDetails()
     {
-        if (!CanvasManager.instance.cardDetailsMenu.activeInHierarchy)
+        if (!canvasManager.cardDetailsMenu.activeInHierarchy)
         {
-            CanvasManager.instance.cardDetailsMenu.SetActive(true);
+            canvasManager.cardDetailsMenu.SetActive(true);
             
             //Show Correct Details Panel
             if (card.currentCardType == Card.cardType.Spell)
             {
-                CanvasManager.instance.unitDetailsPanel.SetActive(false);
-                CanvasManager.instance.spellDetailsPanel.SetActive(true);
+                canvasManager.unitDetailsPanel.SetActive(false);
+                canvasManager.spellDetailsPanel.SetActive(true);
             }
             else
             {
-                CanvasManager.instance.unitDetailsPanel.SetActive(true);
-                CanvasManager.instance.spellDetailsPanel.SetActive(false);
+                canvasManager.unitDetailsPanel.SetActive(true);
+                canvasManager.spellDetailsPanel.SetActive(false);
             }
 
             //Show Card Selected in Card Details Menu
-            var cardDisplay = CanvasManager.instance.cardDetailsMenu.gameObject.GetComponentInChildren<CardDisplay>();
+            var cardDisplay = canvasManager.cardDetailsMenu.gameObject.GetComponentInChildren<CardDisplay>();
             cardDisplay.card = card;
             cardDisplay.UpdateCard();
 
             //Show Card Details 
-            CanvasManager.instance.cardNameText.text = card.name;
-            CanvasManager.instance.cardTypeText.text = card.currentCardType.ToString();
-            CanvasManager.instance.cardAffiliationText.text = card.affiliationtext;
-            CanvasManager.instance.cardATKText.text = card.ATK.ToString();
-            CanvasManager.instance.cardCostText.text = card.cost.ToString();
-            CanvasManager.instance.cardLoreText.text = card.loreText;
-            CanvasManager.instance.cardEffectText.text = card.bonusEffectText;
+            canvasManager.cardNameText.text = card.name;
+            canvasManager.cardTypeText.text = card.currentCardType.ToString();
+            canvasManager.cardAffiliationText.text = card.affiliationtext;
+            canvasManager.cardATKText.text = card.ATK.ToString();
+            canvasManager.cardCostText.text = card.cost.ToString();
+            canvasManager.cardLoreText.text = card.loreText;
+            canvasManager.cardEffectText.text = card.bonusEffectText;
         }
 
-        if (CanvasManager.instance.cardDetailsMenu.activeInHierarchy && SceneManager.GetSceneByName("Arena").isLoaded)
+        if (canvasManager.cardDetailsMenu.activeInHierarchy && SceneManager.GetSceneByName("Arena").isLoaded)
         {
             //Play Card
         }

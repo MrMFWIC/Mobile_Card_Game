@@ -6,14 +6,6 @@ using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
-    static CanvasManager _instance = null;
-
-    public static CanvasManager instance
-    {
-        get { return _instance; }
-        set { _instance = value; }
-    }
-
     [Header("Buttons")]
     public Button startButton;
     public Button beginDuelButton;
@@ -41,12 +33,6 @@ public class CanvasManager : MonoBehaviour
     public Slider mainVolSlider;
     public Slider musicVolSlider;
     public Slider SFXVolSlider;
-
-    [Header("Dropdowns")]
-    public Dropdown textSizeDropdown;
-    public Dropdown deckResourcesDropdown;
-    public Dropdown HPResourcesDropdown;
-    public Dropdown roundResourcesDropdown;
 
     [Header("Toggles")]
     public Toggle muteToggle;
@@ -95,19 +81,6 @@ public class CanvasManager : MonoBehaviour
     public Text cardATKText;
     public Text cardLoreText;
     public Text cardEffectText;
-
-    void Awake()
-    {
-        if (instance)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-    }
 
     // Checks if player inputs are present.
     // Adds listeners and functionality to player inputs
@@ -234,26 +207,6 @@ public class CanvasManager : MonoBehaviour
         {
             //SFX volume control
             SFXVolSlider.onValueChanged.AddListener((value) => SFXSliderValueChange(value));
-        }
-
-        if (textSizeDropdown)
-        {
-            //Text size dropdown control
-        }
-
-        if (deckResourcesDropdown)
-        {
-            //Deck resources dropdown control
-        }
-
-        if (HPResourcesDropdown)
-        {
-            //HP resources dropdown control
-        }
-
-        if (roundResourcesDropdown)
-        {
-            //Round resources dropdown control
         }
 
         if (muteToggle)
