@@ -656,6 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 11400000, guid: b407c49b61bbfd74d9d45006e284d328, type: 2}
+  button: {fileID: 4093590965119119372}
   nameText: {fileID: 4197344616334518286}
   descriptionText: {fileID: 7252430362245235695}
   costText: {fileID: 4419087639207657768}
