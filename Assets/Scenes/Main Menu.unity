@@ -5092,6 +5092,7 @@ MonoBehaviour:
   resumeGame: {fileID: 0}
   surrenderButton: {fileID: 0}
   rematchButton: {fileID: 0}
+  addToDeckButton: {fileID: 0}
   mainVolSlider: {fileID: 2048854857}
   musicVolSlider: {fileID: 14584745}
   SFXVolSlider: {fileID: 191792787}
@@ -5135,6 +5136,10 @@ MonoBehaviour:
   cardATKText: {fileID: 1433766034}
   cardLoreText: {fileID: 1786289886}
   cardEffectText: {fileID: 2042458310}
+  spellCardNameText: {fileID: 766288250}
+  spellCardTypeText: {fileID: 1840131308}
+  spellCardCostText: {fileID: 990504909}
+  spellCardEffectText: {fileID: 1789794494}
 --- !u!1 &721287366
 GameObject:
   m_ObjectHideFlags: 0
@@ -16516,6 +16521,14 @@ MonoBehaviour:
   healthPool: 0
   roundResources: 0
   deckResources: 0
+  p1Leader: {fileID: 0}
+  p1Deck: []
+  p1Hand: []
+  p1RoundResources: 0
+  player2Leader: {fileID: 0}
+  p2Deck: []
+  p2Hand: []
+  p2RoundResources: 0
 --- !u!4 &2049349552
 Transform:
   m_ObjectHideFlags: 0

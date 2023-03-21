@@ -19,3 +19,6 @@ MonoBehaviour:
   cost: 6
   ATK: 0
   currentCardType: 2
+  loreText: 
+  bonusEffectText: Destroy all non-Mystic units on the field.
+  affiliationtext: 

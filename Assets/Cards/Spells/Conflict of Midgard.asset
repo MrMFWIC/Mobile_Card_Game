@@ -15,7 +15,10 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: f79780d5e62ea1c419a179becb6c3ffa, type: 3}
   cardFrame: {fileID: 21300000, guid: 885ec409ec8bf2a45ad8bedd895fcb53, type: 3}
   cardName: Conflict of Midgard
-  description: Destroy all non-Human units on the field,
+  description: Destroy all non-Human units on the field.
   cost: 6
   ATK: 0
   currentCardType: 2
+  loreText: 
+  bonusEffectText: Destroy all non-Human units on the field.
+  affiliationtext: 

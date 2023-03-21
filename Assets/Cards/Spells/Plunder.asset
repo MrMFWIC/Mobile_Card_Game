@@ -19,3 +19,6 @@ MonoBehaviour:
   cost: 4
   ATK: 0
   currentCardType: 2
+  loreText: 
+  bonusEffectText: Draw 2 cards, your opponent gains 5 health points.
+  affiliationtext: 

@@ -30,6 +30,18 @@ public class GameManager : MonoBehaviour
     public int roundResources = 8;
     public int deckResources = 100;
 
+    [Header("Player 1 Info")]
+    public Card p1Leader;
+    public List<Card> p1Deck = new List<Card>();
+    public List<Card> p1Hand = new List<Card>();
+    public int p1RoundResources;
+
+    [Header("Player 2 Info")]
+    public Card p2Leader;
+    public List<Card> p2Deck = new List<Card>();
+    public List<Card> p2Hand = new List<Card>();
+    public int p2RoundResources;
+    
     void Awake()
     {
         if (instance)

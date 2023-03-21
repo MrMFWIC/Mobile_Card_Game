@@ -20,7 +20,6 @@ public class CanvasManager : MonoBehaviour
     public Button offDetailsButton;
     public Button confirmYesButton;
     public Button confirmNoButton;
-    public Button confirmPassButton;
     public Button phaseSelectButton;
     public Button battlePhaseButton;
     public Button endTurnButton;
@@ -28,6 +27,7 @@ public class CanvasManager : MonoBehaviour
     public Button resumeGame;
     public Button surrenderButton;
     public Button rematchButton;
+    public Button addToDeckButton;
 
     [Header("Sliders")]
     public Slider mainVolSlider;
@@ -53,6 +53,10 @@ public class CanvasManager : MonoBehaviour
     [Header("Panels")]
     public GameObject unitDetailsPanel;
     public GameObject spellDetailsPanel;
+
+    [Header("Turn Indicators")]
+    public GameObject p1TurnIndicator;
+    public GameObject p2TurnIndicator;
 
     [Header("Text")]
     public Text quitPromptText;
@@ -81,6 +85,10 @@ public class CanvasManager : MonoBehaviour
     public Text cardATKText;
     public Text cardLoreText;
     public Text cardEffectText;
+    public Text spellCardNameText;
+    public Text spellCardTypeText;
+    public Text spellCardCostText;
+    public Text spellCardEffectText;
 
     // Checks if player inputs are present.
     // Adds listeners and functionality to player inputs
@@ -151,11 +159,6 @@ public class CanvasManager : MonoBehaviour
             confirmNoButton.onClick.AddListener(() => ConfirmNo());
         }
 
-        if (confirmPassButton)
-        {
-            confirmPassButton.onClick.AddListener(() => ConfirmPass());
-        }
-
         if (phaseSelectButton)
         {
             phaseSelectButton.onClick.AddListener(() => PhaseSelect());
@@ -189,6 +192,11 @@ public class CanvasManager : MonoBehaviour
         if (rematchButton)
         {
             rematchButton.onClick.AddListener(() => Rematch());
+        }
+
+        if (addToDeckButton)
+        {
+            addToDeckButton.onClick.AddListener(() => ShowPrompt());
         }
 
         if (mainVolSlider)
@@ -283,6 +291,73 @@ public class CanvasManager : MonoBehaviour
         SceneManager.LoadScene("Credits");
     }
 
+    void AddCardToDeck()
+    {
+        var tempCard = cardDetailsMenu.gameObject.GetComponentInChildren<CardDisplay>();
+        var counter = 0;
+
+        if (leaderMenu.activeInHierarchy && GameManager.instance.player1Turn)
+        {
+            GameManager.instance.p1Leader = tempCard.card;
+            GameManager.instance.p1Deck.Add(tempCard.card);
+            Debug.Log($"Leader {tempCard.card.cardName} Selected For Player 1: Leader Card Added To Deck");
+            PassPhone();
+        }
+        else if (leaderMenu.activeInHierarchy)
+        {
+            GameManager.instance.p2Leader = tempCard.card;
+            GameManager.instance.p2Deck.Add(tempCard.card);
+            Debug.Log($"Leader {tempCard.card.cardName} Selected For Player 2: Leader Card Added To Deck");
+            PassPhone();
+        }
+        else if (GameManager.instance.player1Turn)
+        {
+            if (GameManager.instance.p1Deck.Contains(tempCard.card))
+            {
+                foreach (Card item in GameManager.instance.p1Deck)
+                {
+                    if (item.cardName == tempCard.card.cardName)
+                    {
+                        counter++;
+                    }
+                }
+            }
+
+            if (counter < 3)
+            {
+                GameManager.instance.p1Deck.Add(tempCard.card);
+                Debug.Log($"Card {tempCard.card.cardName} Added To Player 1 Deck: Amount In Deck Is {counter}");
+            }
+            else
+            {
+                Debug.Log($"Card {tempCard.card.cardName} Not Added To Player 1 Deck: Amount In Deck Is {counter} - Card Limit In Deck Reached");
+            }
+        }
+        else
+        {
+            if (GameManager.instance.p2Deck.Contains(tempCard.card))
+            {
+                foreach (Card item in GameManager.instance.p2Deck)
+                {
+                    if (item.cardName == tempCard.card.cardName)
+                    {
+                        counter++;
+                    }
+                }
+            }
+
+            if (counter < 3)
+            {
+                GameManager.instance.p2Deck.Add(tempCard.card);
+                Debug.Log($"Card {tempCard.card.cardName} Added To Player 2 Deck: Amount In Deck Is {counter}");
+            }
+            else
+            {
+                Debug.Log($"Card {tempCard.card.cardName} Not Added To Player 2 Deck: Amount In Deck Is {counter} - Card Limit In Deck Reached");
+            }
+        }
+    }
+
     void MuteVolume()
     {
         //Mute volume
@@ -293,6 +368,7 @@ public class CanvasManager : MonoBehaviour
         if (masterVolText)
         {
             masterVolText.text = (value).ToString();
+            //Change Master Volume
         }
     }
 
@@ -301,6 +377,7 @@ public class CanvasManager : MonoBehaviour
         if (musicVolText)
         {
             musicVolText.text = value.ToString();
+            //Change Music Volume
         }
     }
 
@@ -309,6 +386,7 @@ public class CanvasManager : MonoBehaviour
         if (SFXVolText)
         {
             SFXVolText.text = value.ToString();
+            //Change SFX Volume
         }
     }
 
@@ -367,12 +445,10 @@ public class CanvasManager : MonoBehaviour
         if (GameManager.instance.player1Turn)
         {
             passP2PromptText.gameObject.SetActive(true);
-            GameManager.instance.player1Turn = false;
         }
         else
         {
             passP1PromptText.gameObject.SetActive(true);
-            GameManager.instance.player1Turn = true;
         }
     }
 
@@ -516,8 +592,6 @@ public class CanvasManager : MonoBehaviour
 
         quitPromptText.gameObject.SetActive(false);
         toMenuPromptText.gameObject.SetActive(false);
-        passP1PromptText.gameObject.SetActive(false);
-        passP2PromptText.gameObject.SetActive(false);
         startGameSetupText.gameObject.SetActive(false);
         leaderPromptText.gameObject.SetActive(false);
         deckPromptText.gameObject.SetActive(false);
@@ -528,6 +602,19 @@ public class CanvasManager : MonoBehaviour
         endTurnText.gameObject.SetActive(false);
         surrenderText.gameObject.SetActive(false);
         rematchText.gameObject.SetActive(false);
+
+        if (passP1PromptText.gameObject.activeInHierarchy || passP2PromptText.gameObject.activeInHierarchy)
+        {
+            passP1PromptText.gameObject.SetActive(false);
+            passP2PromptText.gameObject.SetActive(false);
+
+            ConfirmPass();
+
+            return;
+        }
+
+        passP1PromptText.gameObject.SetActive(false);
+        passP2PromptText.gameObject.SetActive(false);
 
         if (mainMenu)
         {
@@ -593,19 +680,7 @@ public class CanvasManager : MonoBehaviour
         {
             if (leaderMenu.activeInHierarchy)
             {
-                if (GameManager.instance.player1Turn)
-                {
-                    PassPhone();
-
-                    return;
-                }
-                else
-                {
-                    leaderMenu.SetActive(false);
-                    deckBuilderMenu.SetActive(true);
-
-                    return;
-                }
+                AddCardToDeck();
             }
         }
 
@@ -770,11 +845,15 @@ public class CanvasManager : MonoBehaviour
 
         if (GameManager.instance.player1Turn)
         {
-            //Swap to Player1
+            GameManager.instance.player1Turn = false;
+            p1TurnIndicator.SetActive(false);
+            p2TurnIndicator.SetActive(true);
         }
         else
         {
-            //Swap to Player2
+            GameManager.instance.player1Turn = true;
+            p1TurnIndicator.SetActive(true);
+            p2TurnIndicator.SetActive(false);
         }
     }
 }

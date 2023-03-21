@@ -20,3 +20,7 @@ MonoBehaviour:
   cost: 2
   ATK: 0
   currentCardType: 2
+  loreText: 
+  bonusEffectText: If you control a unit on the field with a cost of 5 or less, you
+    can  summon an identical unit from your hand at no cost.
+  affiliationtext: 

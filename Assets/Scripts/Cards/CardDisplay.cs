@@ -33,40 +33,41 @@ public class CardDisplay : MonoBehaviour
 
     void ShowCardDetails()
     {
+        canvasManager = UnityEngine.Object.FindObjectOfType<Canvas>().GetComponent<CanvasManager>();
+
         if (!canvasManager.cardDetailsMenu.activeInHierarchy)
         {
             canvasManager.cardDetailsMenu.SetActive(true);
             
-            //Show Correct Details Panel
+            //Show Correct Details Panel With Information
             if (card.currentCardType == Card.cardType.Spell)
             {
                 canvasManager.unitDetailsPanel.SetActive(false);
                 canvasManager.spellDetailsPanel.SetActive(true);
+
+                canvasManager.spellCardNameText.text = card.name;
+                canvasManager.spellCardTypeText.text = card.currentCardType.ToString();
+                canvasManager.spellCardCostText.text = card.cost.ToString();
+                canvasManager.spellCardEffectText.text = card.bonusEffectText;
             }
             else
             {
                 canvasManager.unitDetailsPanel.SetActive(true);
                 canvasManager.spellDetailsPanel.SetActive(false);
+
+                canvasManager.cardNameText.text = card.name;
+                canvasManager.cardTypeText.text = card.currentCardType.ToString();
+                canvasManager.cardAffiliationText.text = card.affiliationtext;
+                canvasManager.cardATKText.text = card.ATK.ToString();
+                canvasManager.cardCostText.text = card.cost.ToString();
+                canvasManager.cardLoreText.text = card.loreText;
+                canvasManager.cardEffectText.text = card.bonusEffectText;
             }
 
             //Show Card Selected in Card Details Menu
             var cardDisplay = canvasManager.cardDetailsMenu.gameObject.GetComponentInChildren<CardDisplay>();
             cardDisplay.card = card;
             cardDisplay.UpdateCard();
-
-            //Show Card Details 
-            canvasManager.cardNameText.text = card.name;
-            canvasManager.cardTypeText.text = card.currentCardType.ToString();
-            canvasManager.cardAffiliationText.text = card.affiliationtext;
-            canvasManager.cardATKText.text = card.ATK.ToString();
-            canvasManager.cardCostText.text = card.cost.ToString();
-            canvasManager.cardLoreText.text = card.loreText;
-            canvasManager.cardEffectText.text = card.bonusEffectText;
-        }
-
-        if (canvasManager.cardDetailsMenu.activeInHierarchy && SceneManager.GetSceneByName("Arena").isLoaded)
-        {
-            //Play Card
         }
     }
 
