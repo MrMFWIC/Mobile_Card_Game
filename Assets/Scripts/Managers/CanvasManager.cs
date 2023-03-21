@@ -28,6 +28,7 @@ public class CanvasManager : MonoBehaviour
     public Button surrenderButton;
     public Button rematchButton;
     public Button addToDeckButton;
+    public Button flipCoinButton;
 
     [Header("Sliders")]
     public Slider mainVolSlider;
@@ -67,7 +68,8 @@ public class CanvasManager : MonoBehaviour
     public Text passP2PromptText;
     public Text leaderPromptText;
     public Text deckPromptText;
-    public Text startDuelText;
+    public Text startDuelP1Text;
+    public Text startDuelP2Text;
     public Text playCardText;
     public Text resumeGameText;
     public Text battlePhaseText;
@@ -197,6 +199,11 @@ public class CanvasManager : MonoBehaviour
         if (addToDeckButton)
         {
             addToDeckButton.onClick.AddListener(() => ShowPrompt());
+        }
+
+        if (flipCoinButton)
+        {
+            flipCoinButton.onClick.AddListener(() => FlipCoin());
         }
 
         if (mainVolSlider)
@@ -356,6 +363,13 @@ public class CanvasManager : MonoBehaviour
                 Debug.Log($"Card {tempCard.card.cardName} Not Added To Player 2 Deck: Amount In Deck Is {counter} - Card Limit In Deck Reached");
             }
         }
+    }
+
+    void FlipCoin()
+    {
+        //Flip The Coin
+
+        ShowPrompt();
     }
 
     void MuteVolume()
@@ -525,7 +539,14 @@ public class CanvasManager : MonoBehaviour
         {
             if (coinTossMenu.activeInHierarchy)
             {
-                startDuelText.gameObject.SetActive(true);
+                if (GameManager.instance.p1StartingPlayer)
+                {
+                    startDuelP1Text.gameObject.SetActive(true);
+                }
+                else
+                {
+                    startDuelP2Text.gameObject.SetActive(true);
+                }
                 
                 return;
             }
@@ -595,7 +616,8 @@ public class CanvasManager : MonoBehaviour
         startGameSetupText.gameObject.SetActive(false);
         leaderPromptText.gameObject.SetActive(false);
         deckPromptText.gameObject.SetActive(false);
-        startDuelText.gameObject.SetActive(false);
+        startDuelP1Text.gameObject.SetActive(false);
+        startDuelP2Text.gameObject.SetActive(false);
         playCardText.gameObject.SetActive(false);
         battlePhaseText.gameObject.SetActive(false);
         attackText.gameObject.SetActive(false);
@@ -814,7 +836,8 @@ public class CanvasManager : MonoBehaviour
         startGameSetupText.gameObject.SetActive(false);
         leaderPromptText.gameObject.SetActive(false);
         deckPromptText.gameObject.SetActive(false);
-        startDuelText.gameObject.SetActive(false);
+        startDuelP1Text.gameObject.SetActive(false);
+        startDuelP2Text.gameObject.SetActive(false);
         playCardText.gameObject.SetActive(false);
         battlePhaseText.gameObject.SetActive(false);
         attackText.gameObject.SetActive(false);
@@ -835,7 +858,8 @@ public class CanvasManager : MonoBehaviour
         startGameSetupText.gameObject.SetActive(false);
         leaderPromptText.gameObject.SetActive(false);
         deckPromptText.gameObject.SetActive(false);
-        startDuelText.gameObject.SetActive(false);
+        startDuelP1Text.gameObject.SetActive(false);
+        startDuelP2Text.gameObject.SetActive(false);
         playCardText.gameObject.SetActive(false);
         battlePhaseText.gameObject.SetActive(false);
         attackText.gameObject.SetActive(false);
