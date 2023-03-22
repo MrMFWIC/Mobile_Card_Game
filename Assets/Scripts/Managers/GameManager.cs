@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public bool rematch = false;
     public bool battlePhase = false;
     public bool p1StartingPlayer = true;
+    public bool passingPhone = false;
 
     [Header("Duel Info")]
     public int healthPool = 15;

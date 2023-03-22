@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
+    [SerializeField] Coin coin;
+
+    Coroutine waitCoroutine;
+
     [Header("Buttons")]
     public Button startButton;
     public Button beginDuelButton;
@@ -367,9 +371,22 @@ public class CanvasManager : MonoBehaviour
 
     void FlipCoin()
     {
-        //Flip The Coin
+        int turn = Random.Range(0, 2);
 
-        ShowPrompt();
+        if (turn == 0)
+        {
+            coin.Player1Flip();
+            Debug.Log(GameManager.instance);
+            GameManager.instance.p1StartingPlayer = true;
+        }
+        else if (turn == 1)
+        {
+            coin.Player2Flip();
+            Debug.Log(GameManager.instance);
+            GameManager.instance.p1StartingPlayer = false;
+        }
+
+        StartWaitCoroutine();
     }
 
     void MuteVolume()
@@ -454,6 +471,8 @@ public class CanvasManager : MonoBehaviour
     //Sets pass-and-play prompt and sets player turn
     void PassPhone()
     {
+        GameManager.instance.passingPhone = true;
+
         promptMenu.SetActive(true);
 
         if (GameManager.instance.player1Turn)
@@ -625,7 +644,7 @@ public class CanvasManager : MonoBehaviour
         surrenderText.gameObject.SetActive(false);
         rematchText.gameObject.SetActive(false);
 
-        if (passP1PromptText.gameObject.activeInHierarchy || passP2PromptText.gameObject.activeInHierarchy)
+        if (GameManager.instance.passingPhone)
         {
             passP1PromptText.gameObject.SetActive(false);
             passP2PromptText.gameObject.SetActive(false);
@@ -799,6 +818,13 @@ public class CanvasManager : MonoBehaviour
     //Returns players to previous screen upon declination of decisions
     void ConfirmNo()
     {
+        if (GameManager.instance.passingPhone)
+        {
+            Debug.Log("It Is Not An Option, It Is An Order");
+
+            return;
+        }
+
         promptMenu.SetActive(false);
 
         if (phaseSelectMenu)
@@ -849,6 +875,11 @@ public class CanvasManager : MonoBehaviour
     //Swap inputs and game states based on player turn
     void ConfirmPass()
     {
+        if (cardDetailsMenu.activeInHierarchy)
+        {
+            cardDetailsMenu.SetActive(false);
+        }
+
         promptMenu.SetActive(false);
 
         quitPromptText.gameObject.SetActive(false);
@@ -879,5 +910,43 @@ public class CanvasManager : MonoBehaviour
             p1TurnIndicator.SetActive(true);
             p2TurnIndicator.SetActive(false);
         }
+
+        GameManager.instance.passingPhone = false;
+
+        if (GameManager.instance.player1Turn)
+        {
+            if (leaderMenu.activeInHierarchy)
+            {
+                leaderMenu.SetActive(false);
+                deckBuilderMenu.SetActive(true);
+            }
+            else if (deckBuilderMenu.activeInHierarchy)
+            {
+                deckBuilderMenu.SetActive(false);
+                coinTossMenu.SetActive(true);
+            }
+        }
+    }
+
+    public void StartWaitCoroutine()
+    {
+        if (waitCoroutine == null)
+        {
+            waitCoroutine = StartCoroutine(WaitCoroutine());
+        }
+        else
+        {
+            StopCoroutine(waitCoroutine);
+            waitCoroutine = null;
+            waitCoroutine = StartCoroutine(WaitCoroutine());
+        }
+    }
+
+    IEnumerator WaitCoroutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        ShowPrompt();
+
+        waitCoroutine = null;
     }
 }
